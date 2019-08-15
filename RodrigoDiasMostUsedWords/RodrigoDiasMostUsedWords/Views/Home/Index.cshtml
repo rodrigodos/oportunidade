@@ -1,0 +1,77 @@
+﻿@model Tuple<List<RodrigoDiasMostUsedWords.Models.TrendWords>,List<RodrigoDiasMostUsedWords.Models.TopicWords>>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Oportunidade</h2>
+    <p class="lead">
+        Se você tem interesse em fazer parte de uma equipe multidisciplinar e que adora criar software com qualidade, siga os seguintes passos:
+    </p>
+
+    <p class="lead">
+        Faça um fork desse projeto e faça um pull request com a resolução do seguinte problema:
+    </p>
+    <p class="lead">
+        Você deverá criar um programa para obter automaticamente o conteúdo dos dez últimos tópicos publicados no blog da Minuto Seguros. Abaixo segue um link para auxiliá-lo nesse trabalho:
+
+
+        <a rel="nofollow" href="http://www.minutoseguros.com.br/blog/feed/"> http://www.minutoseguros.com.br/blog/feed/ </a>
+    </p>
+    <p class="lead">
+        Caso tenha problemas em obter o feed, deixamos um arquivo feed.xml aqui no repositório.
+    </p>
+    <p class="lead">
+        O seu programa deverá avaliar quais as dez principais palavras abordadas nesses tópicos e qual o número de vezes que elas aparecem. Também deverá exibir a quantidade de palavras por tópico. Além disso, deverão ser removidos os artigos e preposições nessa análise.
+        </p>
+    <p class="lead">
+        A linguagem que utilizamos é C#. Pode escolher fazer o teste com .Net Framework ou .Net Core.
+    </p>
+
+</div>
+
+<div class="row">
+    <div><h2 class="text-center">Resultado</h2></div>
+    <div><h3 class="text-center" style="color:red">@ViewBag.ErrorMessage</h3></div> 
+    
+    <div class="col-lg-3">
+        <div><b>Palavras mais abordadas</b><br /></div>
+        <table class="table table-bordered table-responsive table-hover">
+            <tr>
+                <th>Palavra </th>
+                <th>Quantidade </th>
+
+            </tr>
+            @foreach (var d in Model.Item1)
+            {
+                <tr>
+                    <td>@d.WordDescription</td>
+                    <td>@d.QuantityRecorrence</td>
+
+
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-lg-8">
+        <div><b class="text-center">Quantidade de palavras por tópico</b><br /></div>
+        <table class="table table-bordered table-responsive table-hover">
+            <tr>
+                <th>Artigo</th>
+                <th>Quantidade</th>
+
+            </tr>
+            @foreach (var d in Model.Item2)
+            {
+                <tr>
+                    <td>@d.TopicDescription</td>
+                    <td>@d.QuantityWords</td>
+
+
+                </tr>
+            }
+        </table>
+    </div>
+</div>
